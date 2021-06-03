@@ -1,0 +1,36 @@
+<div class="list row">
+    <div class="col-md-6">
+      <h4>Lista de Tareas</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let tarea of tareas; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setCurrentTarea(tarea, i)"
+        >{{tarea.descripcion}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentTarea">
+        <h4>Tarea</h4>
+        <div>
+          <label><strong>Descripcion:</strong></label> 
+          {{currentTarea.descripcion}}
+        </div>
+        <div>
+          <label><strong>Duracion:</strong></label>
+            {{currentTarea.duracion}}
+        </div>
+  
+        <a class="badge badge-warning" [routerLink]="[currentTarea.id]">
+          Editar
+        </a>
+      </div>
+  
+      <div *ngIf="!currentTarea">
+        <br />
+        <p>Selecciona una tarea</p>
+      </div>
+    </div>
+  </div>
